@@ -94,7 +94,7 @@ export default function Navbar() {
               QR Code
             </Link>
 
-            <Link
+            {/* <Link
               href="/admin"
               className={`px-3 py-3 rounded-md text-base font-medium ${
                 isActive("/admin")
@@ -104,7 +104,7 @@ export default function Navbar() {
               onClick={() => setIsMenuOpen(false)}
             >
               Admin
-            </Link>
+            </Link> */}
 
             <LanguageSwitcher />
           </div>
