@@ -1,5 +1,18 @@
 export type Language = 'ja' | 'en';
 
+import { teams } from './teams';
+
+// Create team options objects based on the single source of truth
+const teamOptionsEn = teams.reduce((acc, team) => {
+  acc[team.id] = team.nameEn;
+  return acc;
+}, {} as Record<string, string>);
+
+const teamOptionsJa = teams.reduce((acc, team) => {
+  acc[team.id] = team.nameJa;
+  return acc;
+}, {} as Record<string, string>);
+
 export const translations = {
   ja: {
     title: '訪問者登録',
@@ -23,14 +36,7 @@ export const translations = {
       placeholder: '目的を選択',
       error: '目的を選択してください。',
     },
-    teamOptions: {
-      engineering: 'エンジニアリング',
-      product: 'プロダクト',
-      design: 'デザイン',
-      marketing: 'マーケティング',
-      sales: '営業',
-      support: 'サポート',
-    },
+    teamOptions: teamOptionsJa,
     purposeOptions: {
       Meeting: '会議',
       Interview: '面接',
@@ -84,14 +90,7 @@ export const translations = {
       placeholder: 'Select a purpose',
       error: 'Please select a purpose.',
     },
-    teamOptions: {
-      engineering: 'Engineering',
-      product: 'Product',
-      design: 'Design',
-      marketing: 'Marketing',
-      sales: 'Sales',
-      support: 'Support',
-    },
+    teamOptions: teamOptionsEn,
     purposeOptions: {
       Meeting: 'Meeting',
       Interview: 'Interview',

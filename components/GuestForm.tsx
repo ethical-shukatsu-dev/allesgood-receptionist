@@ -12,11 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useLanguage } from '@/lib/LanguageContext'
-
-type Team = {
-  id: string
-  name: string
-}
+import { teams as allTeams } from '@/lib/teams'
 
 type Purpose = 'Meeting' | 'Interview' | 'Delivery' | 'Other'
 
@@ -25,15 +21,6 @@ export default function GuestForm() {
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
-
-  const teams: Team[] = [
-    { id: 'engineering', name: t.teamOptions.engineering },
-    { id: 'product', name: t.teamOptions.product },
-    { id: 'design', name: t.teamOptions.design },
-    { id: 'marketing', name: t.teamOptions.marketing },
-    { id: 'sales', name: t.teamOptions.sales },
-    { id: 'support', name: t.teamOptions.support },
-  ]
 
   const purposes: Purpose[] = ['Meeting', 'Interview', 'Delivery', 'Other']
 
@@ -152,9 +139,9 @@ export default function GuestForm() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {teams.map((team) => (
+                      {allTeams.map((team) => (
                         <SelectItem key={team.id} value={team.id} className="text-base py-2.5">
-                          {team.name}
+                          {t.teamOptions[team.id]}
                         </SelectItem>
                       ))}
                     </SelectContent>
