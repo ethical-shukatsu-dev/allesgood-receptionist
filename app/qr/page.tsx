@@ -27,11 +27,11 @@ export default function QRCode() {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
-      <h1 className="mb-8 text-3xl font-bold text-primary">QR Code Generator</h1>
+      <h1 className="mb-6 text-2xl sm:text-3xl font-bold text-primary text-center">QR Code Generator</h1>
       
-      <div className="w-full max-w-md p-6 bg-white rounded-lg shadow-md">
-        <div className="mb-4">
-          <label htmlFor="url" className="block mb-2 text-sm font-medium text-gray-700">
+      <div className="w-full max-w-md p-4 sm:p-6 bg-white rounded-lg shadow-md">
+        <div className="mb-5">
+          <label htmlFor="url" className="block mb-2 text-base font-medium text-gray-700">
             URL for QR Code
           </label>
           <input
@@ -39,7 +39,7 @@ export default function QRCode() {
             id="url"
             value={url}
             onChange={(e) => setUrl(e.target.value)}
-            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
+            className="w-full px-3 py-3 text-base border border-gray-300 rounded-md focus:outline-none focus:ring-primary focus:border-primary"
           />
         </div>
         
@@ -49,14 +49,14 @@ export default function QRCode() {
               <img 
                 src={qrCodeUrl} 
                 alt="QR Code" 
-                className="mx-auto"
+                className="mx-auto max-w-full h-auto"
               />
-              <p className="mt-2 text-sm text-gray-500">Scan me to notify your team!</p>
+              <p className="mt-3 text-base text-gray-500">Scan me to notify your team!</p>
             </div>
             
             <button
               onClick={handlePrint}
-              className="mt-4 px-4 py-2 text-sm font-medium text-white bg-primary rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
+              className="mt-5 w-full sm:w-auto px-6 py-3 text-base font-medium text-white bg-primary rounded-md hover:bg-opacity-90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary"
             >
               Print QR Code
             </button>

@@ -86,11 +86,12 @@ export default function GuestForm() {
             </svg>
           </div>
           <h2 className="mb-2 text-2xl font-bold text-gray-800">Thank You!</h2>
-          <p className="mb-4 text-gray-600">
+          <p className="mb-6 text-gray-600">
             Your team has been notified and someone will be with you shortly.
           </p>
           <Button
             onClick={() => setIsSuccess(false)}
+            className="py-3 text-base w-full max-w-xs"
           >
             Submit Another
           </Button>
@@ -101,21 +102,21 @@ export default function GuestForm() {
 
   return (
     <Card className="w-full max-w-md">
-      <CardHeader>
-        <CardTitle>Guest Registration</CardTitle>
+      <CardHeader className="px-4 sm:px-6">
+        <CardTitle className="text-xl sm:text-2xl">Guest Registration</CardTitle>
         <CardDescription>Let us know you've arrived</CardDescription>
       </CardHeader>
-      <CardContent>
+      <CardContent className="px-4 sm:px-6">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
             <FormField
               control={form.control}
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Full Name *</FormLabel>
+                  <FormLabel className="text-base">Full Name *</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} className="h-12 text-base" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -127,9 +128,9 @@ export default function GuestForm() {
               name="company"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Company / Affiliation</FormLabel>
+                  <FormLabel className="text-base">Company / Affiliation</FormLabel>
                   <FormControl>
-                    <Input {...field} />
+                    <Input {...field} className="h-12 text-base" />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -141,16 +142,16 @@ export default function GuestForm() {
               name="team"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Person/Team visiting *</FormLabel>
+                  <FormLabel className="text-base">Person/Team visiting *</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="h-12 text-base">
                         <SelectValue placeholder="Select a team" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {teams.map((team) => (
-                        <SelectItem key={team.id} value={team.id}>
+                        <SelectItem key={team.id} value={team.id} className="text-base py-2.5">
                           {team.name}
                         </SelectItem>
                       ))}
@@ -166,16 +167,16 @@ export default function GuestForm() {
               name="purpose"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>Purpose *</FormLabel>
+                  <FormLabel className="text-base">Purpose *</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
-                      <SelectTrigger>
+                      <SelectTrigger className="h-12 text-base">
                         <SelectValue placeholder="Select a purpose" />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {purposes.map((purpose) => (
-                        <SelectItem key={purpose} value={purpose}>
+                        <SelectItem key={purpose} value={purpose} className="text-base py-2.5">
                           {purpose}
                         </SelectItem>
                       ))}
@@ -198,7 +199,7 @@ export default function GuestForm() {
             <Button 
               type="submit" 
               disabled={isSubmitting}
-              className="w-full"
+              className="w-full h-12 text-base font-medium mt-4"
             >
               {isSubmitting ? 'Notifying...' : 'Notify Team'}
             </Button>
