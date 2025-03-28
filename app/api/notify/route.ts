@@ -26,13 +26,13 @@ export async function POST(request: Request) {
     const companyText = company ? `• Company: ${company}\n` : ''
     
     await webhook.send({
-      text: `${mention} 👋 New guest has arrived!`,
+      text: `${mention ? `<@${mention}>` : ''} 👋 New guest has arrived!`,
       blocks: [
         {
           type: 'section',
           text: {
             type: 'mrkdwn',
-            text: `${mention ? `${mention} ` : ''}*👋 New guest has arrived!*\n• Name: ${name}\n${companyText}• Visiting: ${teamName}\n• Purpose: ${purpose}`
+            text: `${mention ? `<@${mention}>` : ''}*👋 New guest has arrived!*\n• Name: ${name}\n${companyText}• Visiting: ${teamName}\n• Purpose: ${purpose}`
           }
         }
       ]
