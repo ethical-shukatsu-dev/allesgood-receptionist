@@ -11,6 +11,7 @@ import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
+import { useLanguage } from '@/lib/LanguageContext'
 
 type Team = {
   id: string
@@ -19,35 +20,36 @@ type Team = {
 
 type Purpose = 'Meeting' | 'Interview' | 'Delivery' | 'Other'
 
-const teams: Team[] = [
-  { id: 'engineering', name: 'Engineering' },
-  { id: 'product', name: 'Product' },
-  { id: 'design', name: 'Design' },
-  { id: 'marketing', name: 'Marketing' },
-  { id: 'sales', name: 'Sales' },
-  { id: 'support', name: 'Support' },
-]
-
-const purposes: Purpose[] = ['Meeting', 'Interview', 'Delivery', 'Other']
-
-// Create a schema for form validation
-const formSchema = z.object({
-  name: z.string().min(2, {
-    message: "Name must be at least 2 characters.",
-  }),
-  company: z.string().optional(),
-  team: z.string({
-    required_error: "Please select a team.",
-  }),
-  purpose: z.enum(['Meeting', 'Interview', 'Delivery', 'Other'] as const, {
-    required_error: "Please select a purpose.",
-  }),
-})
-
 export default function GuestForm() {
+  const { t } = useLanguage()
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [isSuccess, setIsSuccess] = useState(false)
   const [error, setError] = useState('')
+
+  const teams: Team[] = [
+    { id: 'engineering', name: t.teamOptions.engineering },
+    { id: 'product', name: t.teamOptions.product },
+    { id: 'design', name: t.teamOptions.design },
+    { id: 'marketing', name: t.teamOptions.marketing },
+    { id: 'sales', name: t.teamOptions.sales },
+    { id: 'support', name: t.teamOptions.support },
+  ]
+
+  const purposes: Purpose[] = ['Meeting', 'Interview', 'Delivery', 'Other']
+
+  // Create a schema for form validation
+  const formSchema = z.object({
+    name: z.string().min(2, {
+      message: t.name.error,
+    }),
+    company: z.string().optional(),
+    team: z.string({
+      required_error: t.team.error,
+    }),
+    purpose: z.enum(['Meeting', 'Interview', 'Delivery', 'Other'] as const, {
+      required_error: t.purpose.error,
+    }),
+  })
 
   // Initialize form with react-hook-form and zod validation
   const form = useForm<z.infer<typeof formSchema>>({
@@ -69,7 +71,7 @@ export default function GuestForm() {
       setIsSuccess(true)
       form.reset()
     } catch (err) {
-      setError('Failed to send notification. Please try again.')
+      setError(t.error.message)
       console.error('Error sending notification:', err)
     } finally {
       setIsSubmitting(false)
@@ -85,15 +87,15 @@ export default function GuestForm() {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
             </svg>
           </div>
-          <h2 className="mb-2 text-2xl font-bold text-gray-800">Thank You!</h2>
+          <h2 className="mb-2 text-2xl font-bold text-gray-800">{t.success.title}</h2>
           <p className="mb-6 text-gray-600">
-            Your team has been notified and someone will be with you shortly.
+            {t.success.message}
           </p>
           <Button
             onClick={() => setIsSuccess(false)}
             className="py-3 text-base w-full max-w-xs"
           >
-            Submit Another
+            {t.success.button}
           </Button>
         </CardContent>
       </Card>
@@ -103,8 +105,8 @@ export default function GuestForm() {
   return (
     <Card className="w-full max-w-md">
       <CardHeader className="px-4 sm:px-6">
-        <CardTitle className="text-xl sm:text-2xl">Guest Registration</CardTitle>
-        <CardDescription>Let us know you've arrived</CardDescription>
+        <CardTitle className="text-xl sm:text-2xl">{t.title}</CardTitle>
+        <CardDescription>{t.description}</CardDescription>
       </CardHeader>
       <CardContent className="px-4 sm:px-6">
         <Form {...form}>
@@ -114,9 +116,9 @@ export default function GuestForm() {
               name="name"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-base">Full Name *</FormLabel>
+                  <FormLabel className="text-base">{t.name.label}</FormLabel>
                   <FormControl>
-                    <Input {...field} className="h-12 text-base" />
+                    <Input {...field} className="h-12 text-base" placeholder={t.name.placeholder} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -128,9 +130,9 @@ export default function GuestForm() {
               name="company"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-base">Company / Affiliation</FormLabel>
+                  <FormLabel className="text-base">{t.company.label}</FormLabel>
                   <FormControl>
-                    <Input {...field} className="h-12 text-base" />
+                    <Input {...field} className="h-12 text-base" placeholder={t.company.placeholder} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -142,11 +144,11 @@ export default function GuestForm() {
               name="team"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-base">Person/Team visiting *</FormLabel>
+                  <FormLabel className="text-base">{t.team.label}</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger className="h-12 text-base">
-                        <SelectValue placeholder="Select a team" />
+                        <SelectValue placeholder={t.team.placeholder} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
@@ -167,17 +169,17 @@ export default function GuestForm() {
               name="purpose"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel className="text-base">Purpose *</FormLabel>
+                  <FormLabel className="text-base">{t.purpose.label}</FormLabel>
                   <Select onValueChange={field.onChange} defaultValue={field.value}>
                     <FormControl>
                       <SelectTrigger className="h-12 text-base">
-                        <SelectValue placeholder="Select a purpose" />
+                        <SelectValue placeholder={t.purpose.placeholder} />
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
                       {purposes.map((purpose) => (
                         <SelectItem key={purpose} value={purpose} className="text-base py-2.5">
-                          {purpose}
+                          {t.purposeOptions[purpose]}
                         </SelectItem>
                       ))}
                     </SelectContent>
@@ -189,7 +191,7 @@ export default function GuestForm() {
             
             {error && (
               <Alert variant="destructive">
-                <AlertTitle>Error</AlertTitle>
+                <AlertTitle>{t.error.title}</AlertTitle>
                 <AlertDescription>
                   {error}
                 </AlertDescription>
@@ -201,7 +203,7 @@ export default function GuestForm() {
               disabled={isSubmitting}
               className="w-full bg-purple400 h-12 text-base font-medium mt-4"
             >
-              {isSubmitting ? 'Notifying...' : 'Notify Team'}
+              {isSubmitting ? t.button.submitting : t.button.submit}
             </Button>
           </form>
         </Form>

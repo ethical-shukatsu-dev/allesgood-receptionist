@@ -1,13 +1,18 @@
+'use client'
+
 import GuestForm from "@/components/GuestForm";
+import { useLanguage } from "@/lib/LanguageContext";
 
 export default function Home() {
+  const { t } = useLanguage();
+  
   return (
     <div className="flex flex-col items-center min-h-screen p-4">
       <header className="mb-8 text-center">
         <h1 className="text-3xl font-bold text-primary">
-          Welcome to Our Office
+          {t.homePage.welcome}
         </h1>
-        <p className="mt-2 text-gray-600">Please let us know you've arrived</p>
+        <p className="mt-2 text-gray-600">{t.homePage.subtitle}</p>
       </header>
 
       <GuestForm />
