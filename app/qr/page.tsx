@@ -15,9 +15,9 @@ export default function QRCode() {
 
   useEffect(() => {
     if (url) {
-      // Use the Google Charts API to generate a QR code
+      // Use QRServer.com API to generate a QR code (Google Charts API is deprecated)
       const encodedUrl = encodeURIComponent(url)
-      setQrCodeUrl(`https://chart.googleapis.com/chart?cht=qr&chl=${encodedUrl}&chs=300x300&choe=UTF-8`)
+      setQrCodeUrl(`https://api.qrserver.com/v1/create-qr-code/?data=${encodedUrl}&size=300x300`)
     }
   }, [url])
 
