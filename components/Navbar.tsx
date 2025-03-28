@@ -18,7 +18,7 @@ export default function Navbar() {
   };
 
   return (
-    <nav className="bg-primary text-white px-4 relative">
+    <nav className="bg-purple400 text-white px-4 relative">
       <div className="container mx-auto flex flex-wrap justify-between items-center">
         <Link href="/" className="hover:text-gray-200">
           <Image
@@ -34,7 +34,7 @@ export default function Navbar() {
         {/* Mobile menu button */}
         <button
           onClick={toggleMenu}
-          className="md:hidden flex items-center px-3 py-2 rounded text-white hover:bg-primary-dark"
+          className="md:hidden flex items-center px-3 py-2 rounded text-white hover:bg-purple700"
           aria-label="Toggle menu"
         >
           <svg
@@ -66,14 +66,14 @@ export default function Navbar() {
         <div
           className={`${
             isMenuOpen ? "block" : "hidden"
-          } md:flex md:items-center w-full md:w-auto mt-4 md:mt-0`}
+          } md:flex md:items-center w-full md:w-auto mb-4 md:mb-0`}
         >
           <div className="flex flex-col md:flex-row md:space-x-4 space-y-2 md:space-y-0">
             <Link
               href="/"
               className={`px-3 py-3 rounded-md text-base font-medium ${
                 isActive("/")
-                  ? "bg-primary-dark text-white"
+                  ? "bg-purple400 text-white"
                   : "hover:bg-opacity-75"
               }`}
               onClick={() => setIsMenuOpen(false)}
@@ -85,7 +85,7 @@ export default function Navbar() {
               href="/qr"
               className={`px-3 py-3 rounded-md text-base font-medium ${
                 isActive("/qr")
-                  ? "bg-primary-dark text-white"
+                  ? "bg-purple400 text-white"
                   : "hover:bg-opacity-75"
               }`}
               onClick={() => setIsMenuOpen(false)}
@@ -97,7 +97,7 @@ export default function Navbar() {
               href="/admin"
               className={`px-3 py-3 rounded-md text-base font-medium ${
                 isActive("/admin")
-                  ? "bg-primary-dark text-white"
+                  ? "bg-purple400 text-white"
                   : "hover:bg-opacity-75"
               }`}
               onClick={() => setIsMenuOpen(false)}

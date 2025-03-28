@@ -23,7 +23,7 @@ body {
 
     --popover-foreground: 222.2 84% 4.9%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 247 70% 51%; /* purple400: #544CD6 */
 
     --primary-foreground: 210 40% 98%;
 
@@ -75,7 +75,7 @@ body {
 
     --popover-foreground: 210 40% 98%;
 
-    --primary: 210 40% 98%;
+    --primary: 247 70% 51%; /* purple400: #544CD6 */
 
     --primary-foreground: 222.2 47.4% 11.2%;
 

@@ -199,7 +199,7 @@ export default function GuestForm() {
             <Button 
               type="submit" 
               disabled={isSubmitting}
-              className="w-full h-12 text-base font-medium mt-4"
+              className="w-full bg-purple400 h-12 text-base font-medium mt-4"
             >
               {isSubmitting ? 'Notifying...' : 'Notify Team'}
             </Button>
