@@ -15,7 +15,7 @@ const teamOptionsJa = team.reduce((acc, team) => {
 
 export const translations = {
   ja: {
-    title: '訪問者登録',
+    title: '訪問者登',
     description: 'お越しいただきありがとうございます',
     name: {
       label: '氏名 *',
