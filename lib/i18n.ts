@@ -1,14 +1,14 @@
 export type Language = 'ja' | 'en';
 
-import { teams } from './teams';
+import { team } from './team';
 
 // Create team options objects based on the single source of truth
-const teamOptionsEn = teams.reduce((acc, team) => {
+const teamOptionsEn = team.reduce((acc, team) => {
   acc[team.id] = team.nameEn;
   return acc;
 }, {} as Record<string, string>);
 
-const teamOptionsJa = teams.reduce((acc, team) => {
+const teamOptionsJa = team.reduce((acc, team) => {
   acc[team.id] = team.nameJa;
   return acc;
 }, {} as Record<string, string>);

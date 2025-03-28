@@ -1,6 +1,6 @@
 import { NextResponse } from 'next/server'
 import { IncomingWebhook } from '@slack/webhook'
-import { teamMap } from '@/lib/teams'
+import { teamMap } from '@/lib/team'
 
 // In a real app, this would be an environment variable
 const SLACK_WEBHOOK_URL = process.env.SLACK_WEBHOOK_URL || 'https://hooks.slack.com/services/your/webhook/url'

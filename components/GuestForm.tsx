@@ -12,7 +12,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import * as z from "zod"
 import { useLanguage } from '@/lib/LanguageContext'
-import { teams as allTeams } from '@/lib/teams'
+import { team as teamMembers } from '@/lib/team'
 
 type Purpose = 'Meeting' | 'Interview' | 'Delivery' | 'Other'
 
@@ -80,7 +80,7 @@ export default function GuestForm() {
           </p>
           <Button
             onClick={() => setIsSuccess(false)}
-            className="py-3 text-base w-full max-w-xs"
+            className="w-full max-w-xs py-3 text-base"
           >
             {t.success.button}
           </Button>
@@ -139,7 +139,7 @@ export default function GuestForm() {
                       </SelectTrigger>
                     </FormControl>
                     <SelectContent>
-                      {allTeams.map((team) => (
+                      {teamMembers.map((team) => (
                         <SelectItem key={team.id} value={team.id} className="text-base py-2.5">
                           {t.teamOptions[team.id]}
                         </SelectItem>
@@ -188,7 +188,7 @@ export default function GuestForm() {
             <Button 
               type="submit" 
               disabled={isSubmitting}
-              className="w-full bg-purple400 h-12 text-base font-medium mt-4"
+              className="w-full h-12 mt-4 text-base font-medium bg-purple400"
             >
               {isSubmitting ? t.button.submitting : t.button.submit}
             </Button>

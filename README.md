@@ -64,9 +64,9 @@ Make sure to set the `SLACK_WEBHOOK_URL` environment variable in your Vercel pro
 
 ## Customization
 
-### Modifying Teams
+### Modifying Team Members
 
-Edit the `teams` array in `components/GuestForm.tsx` to customize the list of available teams.
+Edit the `team` array in `team.ts` to customize the list of team members.
 
 ### Changing Purposes
 

@@ -9,7 +9,7 @@ type Team = {
 }
 
 type Config = {
-  teams: Team[]
+  team: Team[]
   purposes: string[]
   slackWebhookUrl: string
   branding: {
@@ -20,7 +20,7 @@ type Config = {
 
 // This would typically be loaded from a backend service or local storage
 const defaultConfig: Config = {
-  teams: [
+  team: [
     { id: 'engineering', name: 'Engineering', mention: '@engineering' },
     { id: 'product', name: 'Product', mention: '@product' },
     { id: 'design', name: 'Design', mention: '@design' },
@@ -43,25 +43,25 @@ export default function AdminConfig() {
   const [saved, setSaved] = useState(false)
 
   const handleTeamChange = (index: number, field: keyof Team, value: string) => {
-    const updatedTeams = [...config.teams]
-    updatedTeams[index] = { ...updatedTeams[index], [field]: value }
-    setConfig({ ...config, teams: updatedTeams })
+    const updatedTeam = [...config.team]
+    updatedTeam[index] = { ...updatedTeam[index], [field]: value }
+    setConfig({ ...config, team: updatedTeam })
   }
 
   const handleAddTeam = () => {
     if (newTeam.id && newTeam.name) {
       setConfig({
         ...config,
-        teams: [...config.teams, { ...newTeam }]
+        team: [...config.team, { ...newTeam }]
       })
       setNewTeam({ id: '', name: '', mention: '' })
     }
   }
 
   const handleRemoveTeam = (index: number) => {
-    const updatedTeams = [...config.teams]
-    updatedTeams.splice(index, 1)
-    setConfig({ ...config, teams: updatedTeams })
+    const updatedTeam = [...config.team]
+    updatedTeam.splice(index, 1)
+    setConfig({ ...config, team: updatedTeam })
   }
 
   const handleAddPurpose = () => {
@@ -91,11 +91,11 @@ export default function AdminConfig() {
   }
 
   return (
-    <div className="container mx-auto px-4 py-8 max-w-4xl">
-      <h1 className="text-3xl font-bold text-primary mb-8">Admin Configuration</h1>
+    <div className="container max-w-4xl px-4 py-8 mx-auto">
+      <h1 className="mb-8 text-3xl font-bold text-primary">Admin Configuration</h1>
       
-      <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4">Slack Integration</h2>
+      <div className="p-6 mb-8 bg-white rounded-lg shadow-md">
+        <h2 className="mb-4 text-xl font-semibold">Slack Integration</h2>
         <div className="mb-4">
           <label htmlFor="webhookUrl" className="block mb-2 text-sm font-medium text-gray-700">
             Slack Webhook URL
@@ -113,8 +113,8 @@ export default function AdminConfig() {
         </div>
       </div>
       
-      <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4">Teams Configuration</h2>
+      <div className="p-6 mb-8 bg-white rounded-lg shadow-md">
+        <h2 className="mb-4 text-xl font-semibold">Team Configuration</h2>
         
         <div className="overflow-x-auto">
           <table className="w-full text-sm text-left text-gray-500">
@@ -127,7 +127,7 @@ export default function AdminConfig() {
               </tr>
             </thead>
             <tbody>
-              {config.teams.map((team, index) => (
+              {config.team.map((team, index) => (
                 <tr key={index} className="bg-white border-b">
                   <td className="px-4 py-2">
                     <input
@@ -168,7 +168,7 @@ export default function AdminConfig() {
           </table>
         </div>
         
-        <div className="mt-4 grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 gap-4 mt-4 md:grid-cols-3">
           <input
             type="text"
             placeholder="ID (e.g. finance)"
@@ -195,18 +195,18 @@ export default function AdminConfig() {
         <button
           onClick={handleAddTeam}
           disabled={!newTeam.id || !newTeam.name}
-          className="mt-4 px-4 py-2 bg-primary text-white rounded-md disabled:bg-gray-300"
+          className="px-4 py-2 mt-4 text-white rounded-md bg-primary disabled:bg-gray-300"
         >
           Add Team
         </button>
       </div>
       
-      <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4">Visit Purposes</h2>
+      <div className="p-6 mb-8 bg-white rounded-lg shadow-md">
+        <h2 className="mb-4 text-xl font-semibold">Visit Purposes</h2>
         
         <div className="flex flex-wrap gap-2 mb-4">
           {config.purposes.map((purpose, index) => (
-            <div key={index} className="flex items-center bg-gray-100 px-3 py-1 rounded-full">
+            <div key={index} className="flex items-center px-3 py-1 bg-gray-100 rounded-full">
               <span>{purpose}</span>
               <button
                 onClick={() => handleRemovePurpose(index)}
@@ -229,15 +229,15 @@ export default function AdminConfig() {
           <button
             onClick={handleAddPurpose}
             disabled={!newPurpose}
-            className="px-4 py-2 bg-primary text-white rounded-md disabled:bg-gray-300"
+            className="px-4 py-2 text-white rounded-md bg-primary disabled:bg-gray-300"
           >
             Add
           </button>
         </div>
       </div>
       
-      <div className="bg-white shadow-md rounded-lg p-6 mb-8">
-        <h2 className="text-xl font-semibold mb-4">Branding</h2>
+      <div className="p-6 mb-8 bg-white rounded-lg shadow-md">
+        <h2 className="mb-4 text-xl font-semibold">Branding</h2>
         
         <div className="mb-4">
           <label htmlFor="logoUrl" className="block mb-2 text-sm font-medium text-gray-700">
@@ -275,14 +275,14 @@ export default function AdminConfig() {
       <div className="flex justify-end">
         <button
           onClick={handleSave}
-          className="px-6 py-3 bg-primary text-white font-medium rounded-md hover:bg-opacity-90"
+          className="px-6 py-3 font-medium text-white rounded-md bg-primary hover:bg-opacity-90"
         >
           Save Configuration
         </button>
       </div>
       
       {saved && (
-        <div className="fixed bottom-4 right-4 bg-green-100 border-l-4 border-green-500 text-green-700 p-4 rounded shadow-md">
+        <div className="fixed p-4 text-green-700 bg-green-100 border-l-4 border-green-500 rounded shadow-md bottom-4 right-4">
           Configuration saved successfully!
         </div>
       )}
