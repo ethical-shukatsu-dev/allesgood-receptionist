@@ -26,7 +26,7 @@ export default function QRCode() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen p-4">
+    <div className="flex flex-col items-center min-h-screen p-4">
       <h1 className="mb-6 text-2xl sm:text-3xl font-bold text-primary text-center">QR Code Generator</h1>
       
       <div className="w-full max-w-md p-4 sm:p-6 bg-white rounded-lg shadow-md">
