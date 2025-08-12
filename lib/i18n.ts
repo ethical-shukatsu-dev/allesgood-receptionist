@@ -64,7 +64,7 @@ export const translations = {
       }
     },
     homePage: {
-      welcome: 'アレスグッドへようこそ',
+      welcome: 'BaseMeへようこそ',
       subtitle: 'ゲスト情報をご入力ください'
     }
   },
