@@ -7,7 +7,7 @@ import { LanguageProvider } from '@/lib/LanguageContext'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata: Metadata = {
-  title: 'Allesgood Receptionist',
+  title: 'BaseMe Receptionist',
   description: 'Notify your team when a guest arrives',
   viewport: {
     width: 'device-width',
@@ -27,7 +27,7 @@ export default function RootLayout({
       <body className={inter.className}>
         <LanguageProvider>
           <Navbar />
-          <main className="min-h-screen pt-4">
+          <main className="pt-4 min-h-screen">
             {children}
           </main>
         </LanguageProvider>
