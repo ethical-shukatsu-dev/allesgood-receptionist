@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import {usePathname} from "next/navigation";
-import {useState, useEffect} from "react";
+import {useState} from "react";
 import {LanguageSwitcher} from "./LanguageSwitcher";
 
 export default function Navbar() {
@@ -20,15 +20,14 @@ export default function Navbar() {
 
   return (
     <nav className="relative px-4 text-white bg-purple400">
-      <div className="container flex flex-wrap items-center justify-between mx-auto">
-        <Link href="/" className="hover:text-gray-200">
+      <div className="container flex flex-wrap justify-between items-center mx-auto">
+        <Link href="/" className="py-6 hover:text-gray-200">
           <Image
-            src="/allesgood_logo_light.png"
-            alt="Allesgood logo"
-            width={180}
-            height={40}
+            src="/baseme_logo.png"
+            alt="BaseMe logo"
+            width={120}
+            height={30}
             priority
-            className="-my-12 -ml-4"
           />
         </Link>
 
@@ -72,9 +71,8 @@ export default function Navbar() {
           <div className="flex flex-col space-y-2 md:flex-row md:space-x-4 md:space-y-0">
             <Link
               href="/qr"
-              className={`px-3 py-3 rounded-md text-base font-medium ${
-                isActive("/qr")
-                  ? "bg-purple400 text-white"
+              className={`px-3 py-3 text-base font-medium rounded-md ${ isActive("/qr")
+                  ? "text-white bg-purple400"
                   : "hover:bg-opacity-75"
               }`}
               onClick={() => setIsMenuOpen(false)}
@@ -84,9 +82,8 @@ export default function Navbar() {
 
             {/* <Link
               href="/admin"
-              className={`px-3 py-3 rounded-md text-base font-medium ${
-                isActive("/admin")
-                  ? "bg-purple400 text-white"
+              className={`px-3 py-3 text-base font-medium rounded-md ${ isActive("/admin")
+                  ? "text-white bg-purple400"
                   : "hover:bg-opacity-75"
               }`}
               onClick={() => setIsMenuOpen(false)}
