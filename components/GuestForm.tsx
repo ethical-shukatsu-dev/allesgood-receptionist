@@ -4,8 +4,8 @@ import { useState } from 'react'
 import axios from 'axios'
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select"
 import { Alert, AlertTitle, AlertDescription } from "@/components/ui/alert"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -69,7 +69,7 @@ export default function GuestForm() {
     return (
       <Card className="w-full max-w-md">
         <CardContent className="pt-6 text-center">
-          <div className="inline-flex items-center justify-center w-16 h-16 mx-auto mb-4 bg-green-100 rounded-full">
+          <div className="inline-flex justify-center items-center mx-auto mb-4 w-16 h-16 bg-green-100 rounded-full">
             <svg className="w-8 h-8 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path>
             </svg>
@@ -80,7 +80,7 @@ export default function GuestForm() {
           </p>
           <Button
             onClick={() => setIsSuccess(false)}
-            className="w-full max-w-xs py-3 text-base"
+            className="py-3 w-full max-w-xs text-base"
           >
             {t.success.button}
           </Button>
@@ -188,7 +188,7 @@ export default function GuestForm() {
             <Button 
               type="submit" 
               disabled={isSubmitting}
-              className="w-full h-12 mt-4 text-base font-medium bg-purple400"
+              className="mt-4 w-full h-12 text-base font-medium bg-purple400"
             >
               {isSubmitting ? t.button.submitting : t.button.submit}
             </Button>
